@@ -1,5 +1,3 @@
 
-
-def countWordInTweets(word):
-
+def countWord(word):
     return 100

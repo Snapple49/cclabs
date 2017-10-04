@@ -1,9 +1,12 @@
 from celery import Celery
 
-import tweetcounter
+from tweetcounter import countWord
 
 app = Celery('app-server')
 app.config_from_object('celeryconfig')
+
+#def countWord(word):
+#    return 100
 
 @app.task
 def hello(name):
@@ -11,4 +14,4 @@ def hello(name):
 
 @app.task
 def countWordInTweets(word):
-    return tweetcounter.countWord(word)
+    return countWord(word)
