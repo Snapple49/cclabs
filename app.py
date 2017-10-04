@@ -1,20 +1,25 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response, jsonify
 
 import tweetcounter
-import json
 
 
 import tasks
 
 app = Flask(__name__)
 
-@app.route("/tweetalyzerAPI/0.1", methods = ['GET', 'POST'])
+@app.route("/") 
+def landingPage():
+    return render_template('index.html')
+
+
+@app.route("/tweetalyzerAPI/0.1/wordcount", methods = ['POST'])
 def wordcount():
     formdata = request.form['words']
-    words = wordstring.split(',')
-    results = []
+    words = formdata.split(',')
+    print words
     jsonresult = {}
+    results = []
     for word in words:
         results.append(tasks.countWordInTweets.delay(word))
         jsonresult[word]=0
@@ -23,8 +28,8 @@ def wordcount():
         for res in results:
             jsonresult[word] = res.wait()
         
-    
-    return render_template('index.html', json=jsonresult)
+    resp = make_response(jsonify(jsonresult))
+    return resp
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

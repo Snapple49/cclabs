@@ -7,12 +7,12 @@
   <body>
     <h1>Greetings from Snic</h1>
 
-    <h2> Celery returned: {{ celery.result }} </h2>
+    <h2>Search tweets for word statistics!</h2>
 
 
-    <form method="GET" action="/">
+    <form method="POST" action="/">
       <label for="words"> Enter some words to search for, separated by , : </label>
-      <input type="text" words="words"/>
+      <input type="text" name="words"/>
       <input type="submit"/>
     </form>
   </body>
