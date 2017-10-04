@@ -1,4 +1,4 @@
-broker_url = 'amqp://'
+broker_url = 'amqp://localhost:5000'
 result_backend = 'rpc://'
 
 task_serializer = 'json'
