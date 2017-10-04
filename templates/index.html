@@ -5,14 +5,14 @@
     <title>Celery Flask Application</title>
   </head>
   <body>
-    <h1>Greetings from Scalingo</h1>
+    <h1>Greetings from Snic</h1>
 
     <h2> Celery returned: {{ celery.result }} </h2>
 
 
     <form method="GET" action="/">
-      <label for="name"> Enter your name : </label>
-      <input type="text" name="name"/>
+      <label for="words"> Enter some words to search for, separated by , : </label>
+      <input type="text" words="words"/>
       <input type="submit"/>
     </form>
   </body>
