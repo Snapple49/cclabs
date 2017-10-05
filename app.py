@@ -13,7 +13,7 @@ def landingPage():
 
 @app.route("/tweetAPI/0.1/pronouncount", methods = ['GET'])
 def pronouncount():
-    return wordcount("han,hon,hen,den,det")
+    return wordcount("han,hon,hen,den,det,denne,denna")
 
 @app.route("/tweetAPI/0.1/wordcount", methods = ['POST'])
 def wordcount(formdata = None):
