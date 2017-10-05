@@ -12,10 +12,14 @@ app = Flask(__name__)
 def landingPage():
     return render_template('index.html')
 
+@app.route("/tweetAPI/0.1/pronouncount", methods = ['GET'])
+def pronouncount():
+    return wordcount("han,hon,hen,den,det")
 
-@app.route("/tweetalyzerAPI/0.1/wordcount", methods = ['POST'])
-def wordcount():
-    formdata = request.form['words']
+@app.route("/tweetAPI/0.1/wordcount", methods = ['POST'])
+def wordcount(formdata = None):
+    if formdata is None:
+        formdata = request.form['words']
     words = formdata.split(',')
     print words
     jsonresult = {}
