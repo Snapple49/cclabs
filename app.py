@@ -1,9 +1,8 @@
 import os
 from flask import Flask, render_template, request, make_response, jsonify
+import json
 
 import tweetcounter
-
-
 import tasks
 
 app = Flask(__name__)
@@ -26,11 +25,9 @@ def wordcount(formdata = None):
     results = []
     for word in words:
         results.append(tasks.countWordInTweets.delay(word))
-        jsonresult[word]=0
-        
-    for word in words:
-        for res in results:
-            jsonresult[word] = res.wait()
+
+    for res in results:
+        jsonresult.update(res.wait()) 
         
     resp = make_response(jsonify(jsonresult))
     return resp
